@@ -11,8 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
-        'due_data'
+        'due_date',
     ];
 
     public function user(): BelongsTo
