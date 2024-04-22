@@ -26,4 +26,12 @@ class OrderService {
     {
         $order->delete();
     }
+
+    public function payOrder(Order $order)
+    {
+        $order->paid_date = now();
+        $order->save();
+
+        return $order;
+    }
 }

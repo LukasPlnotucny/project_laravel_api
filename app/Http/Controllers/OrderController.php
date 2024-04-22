@@ -64,4 +64,13 @@ class OrderController extends APIController
     }
 
 
+    public function pay(int $id): JsonResponse
+    {
+        $order = $this->orderRepository->getOrderById($id);
+
+        $this->orderService->payOrder($order);
+
+        return $this->sendResponse($order, __("apiMessages.order.paid", ['order' => $order->number]));
+    }
+
 }

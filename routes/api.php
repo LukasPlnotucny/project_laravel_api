@@ -14,8 +14,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('orders', OrderController::class);
 
-    Route::get('/test', function () {
-        return ['ff' => 1];
+    Route::middleware('order_not_paid')->group(function () {
+        Route::post('/orders/{id}/pay', [OrderController::class, 'pay'])->name('orders.pay');
     });
 
 
