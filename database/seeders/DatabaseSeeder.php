@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Order::factory(5)->create();
+        Item::factory(10)->create();
     }
 }
