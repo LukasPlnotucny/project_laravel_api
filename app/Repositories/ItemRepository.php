@@ -19,6 +19,6 @@ class ItemRepository implements ItemRepositoryInterface {
 
     public function getItemById(int $id): Item
     {
-        return Item::finOrFail($id);
+        return Item::findOrFail($id);
     }
 }

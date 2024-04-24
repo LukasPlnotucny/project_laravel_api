@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\OrderNotPaid;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,7 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'order_not_paid' => OrderNotPaid::class
+            'order_not_paid' => OrderNotPaid::class,
+            'is_admin' => IsAdmin::class
         ]);
 
         $middleware->statefulApi();

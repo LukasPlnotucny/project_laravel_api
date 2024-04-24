@@ -27,9 +27,9 @@ class OrderController extends APIController
 
     public function show(int $id): JsonResponse
     {
-        $orders = $this->orderRepository->getOrderById($id);
+        $order = $this->orderRepository->getOrderById($id);
 
-        $resource = new OrderResource($orders);
+        $resource = new OrderResource($order);
 
         return $this->sendResponse($resource);
     }
