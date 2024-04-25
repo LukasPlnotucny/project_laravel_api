@@ -14,6 +14,13 @@ class ItemResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'price' => $this->price,
+            'quantity' => $this->whenPivotLoaded('item_order', function () {
+                return $this->pivot->quantity;
+            }, 0)
+        ];
     }
 }
