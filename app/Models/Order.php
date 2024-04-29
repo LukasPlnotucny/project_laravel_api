@@ -13,6 +13,7 @@ class Order extends Model
 
     protected $fillable = [
         'due_date',
+        'number'
     ];
 
     public function user(): BelongsTo

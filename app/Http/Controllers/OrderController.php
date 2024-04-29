@@ -20,7 +20,7 @@ class OrderController extends APIController
     {
         $orders = $this->orderRepository->getOrders();
 
-        $resource = OrderResource::collection($orders->with('items'));
+        $resource = OrderResource::collection($orders);
 
         return $this->sendResponse($resource);
     }
@@ -29,19 +29,14 @@ class OrderController extends APIController
     {
         $order = $this->orderRepository->getOrderById($id);
 
-        $resource = new OrderResource($order);
+        $resource = new OrderResource($order->load('items'));
 
         return $this->sendResponse($resource);
     }
 
     public function store(CreateOrderRequest $request): JsonResponse
     {
-
-        $order = $this->orderService->createOrder($request->only(['due_data']));
-
-        foreach ($request->input('items') as $item) {
-            $order->items()->attach($item['id'], ['quantity' => $item['quantity']]);
-        }
+        $order = $this->orderService->createOrder($request->all());
 
         $resource = new OrderResource($order);
 

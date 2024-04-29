@@ -62,14 +62,4 @@ class ItemController extends APIController
 
         return $this->sendResponse(null, __("apiMessages.contractGroup.destroyed", ["name" => $item->name]));
     }
-
-
-    public function pay(int $id): JsonResponse
-    {
-        $order = $this->orderRepository->getOrderById($id);
-
-        $this->orderService->payOrder($order);
-
-        return $this->sendResponse($order, __("apiMessages.order.paid", ['order' => $order->number]));
-    }
 }
