@@ -18,6 +18,8 @@ class ItemResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'price' => $this->price,
+            'vat' => $this->vat,
+            'price_with_vat' => $this->price_with_vat,
             'quantity' => $this->whenPivotLoaded('item_order', function () {
                 return $this->pivot->quantity;
             }, 0)

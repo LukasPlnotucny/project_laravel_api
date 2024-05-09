@@ -22,7 +22,9 @@ class CreateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|gt:0',
+            'vat' => 'required|numeric|between:0,100'
         ];
     }
 }

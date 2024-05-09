@@ -12,7 +12,8 @@ class Item extends Model
 
     protected $fillable = [
         'name',
-        'price'
+        'price',
+        'vat'
     ];
 
     public function orders(): BelongsToMany
