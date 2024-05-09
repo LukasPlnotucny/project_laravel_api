@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateOrderRequest extends CreateOrderRequest
+class CreateItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,6 +21,10 @@ class UpdateOrderRequest extends CreateOrderRequest
      */
     public function rules(): array
     {
-        return parent::rules();
+        return [
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|gt:0',
+            'vat' => 'required|numeric|between:0,100'
+        ];
     }
 }
