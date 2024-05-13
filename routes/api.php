@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('orders', OrderController::class);
+    Route::get('/order/{id}/items', [OrderController::class, 'showOrderItems'])->name('order.items');
+
+
     Route::get('/user', [ AuthController::class, 'user' ]);
 
     Route::middleware('is_admin')->group(function () {
